@@ -43,7 +43,7 @@ void insertAfter(Node* prev,int newData)
     }
     Node* newNode=new Node() ; 
     newNode->data=newData  ;
-    newNode->link=nullptr ;  
+    newNode->link=prev->link ;  
     prev->link=newNode ; 
     return ; 
 }
