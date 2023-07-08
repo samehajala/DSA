@@ -34,7 +34,19 @@ void Append(Node **head,int newData)
     last->link=newNode ; 
     return ; 
 }
-
+void insertAfter(Node* prev,int newData)
+{
+    if(prev==nullptr)
+    {
+        cout<<"Previous can't be null "<<endl ; 
+        return ; 
+    }
+    Node* newNode=new Node() ; 
+    newNode->data=newData  ;
+    newNode->link=nullptr ;  
+    prev->link=newNode ; 
+    return ; 
+}
 int main()
 {
     Node* A = nullptr ; 
