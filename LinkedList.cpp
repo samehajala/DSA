@@ -5,6 +5,20 @@ struct Node
     int data ; 
     Node* link ; 
 }; 
+void push(Node **head , int newDAta)
+{
+    Node* newNode=new Node() ; 
+    newNode->data=newDAta ; 
+    newNode->link=nullptr ; 
+    if (*head==nullptr)
+    {
+        *head=newNode ; 
+        return ; 
+    }
+    newNode->link=*head ; 
+    *head=newNode ; 
+    return ; 
+}
 void Append(Node **head,int newData)
 {
     Node* newNode=new Node() ; 
@@ -26,6 +40,7 @@ void Append(Node **head,int newData)
     last->link=newNode ; 
     return ; 
 }
+
 int main()
 {
     Node* A = nullptr ; 
