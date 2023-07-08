@@ -9,14 +9,8 @@ void push(Node **head , int newDAta)
 {
     Node* newNode=new Node() ; 
     newNode->data=newDAta ; 
-    newNode->link=nullptr ; 
-    if (*head==nullptr)
-    {
-        *head=newNode ; 
-        return ; 
-    }
     newNode->link=*head ; 
-    *head=newNode ; 
+    *head=newNode;  
     return ; 
 }
 void Append(Node **head,int newData)
@@ -48,6 +42,7 @@ int main()
     {
     Append(&A,i) ;  
     }
-
+    push(&A,20) ; 
+    cout<<A->data<<endl ; 
     return 0 ; 
 }
