@@ -1,18 +1,21 @@
 #include<iostream> 
 using namespace std ; 
+#include"Node.h"
+NodeLinkedList::NodeLinkedList(int value){data=value ; }
 struct Node
 {
     int data ; 
     Node* link ; 
 }; 
-void push(Node **head , int newDAta)
+void push(NodeLinkedList **head , int newDAta)
 {
-    Node* newNode=new Node() ; 
-    newNode->data=newDAta ; 
+    NodeLinkedList* newNode=new NodeLinkedList(newDAta) ; 
+     
     newNode->link=*head ; 
     *head=newNode;  
     return ; 
 }
+
 void Append(Node **head,int newData)
 {
     Node* newNode=new Node() ; 
@@ -49,7 +52,7 @@ void insertAfter(Node* prev,int newData)
 }
 void deleteNode(Node **head ,int pos) 
 {
-    if(*head==nullptr)
+    if(*head==nullptr || pos==0)
     {
         return ; 
     }
@@ -86,6 +89,32 @@ void printLinkedList(Node* head)
     }
     return ; 
 }
+int getCount(Node* head)
+{ 
+    if (head==nullptr)
+    {
+        return 0  ; 
+    }
+    int count=0 ; 
+    while (head!=nullptr)
+    {
+        count++ ;
+        head=head->link ; 
+    }
+    return count ;    
+}
+void reverseLinkedList(Node** head)
+{
+    if((*head)==nullptr )
+    {
+        return ; 
+    }
+    if((*head)->link==nullptr)
+    {
+        return ; 
+    }
+    
+}
 int main()
 {
     Node* A = nullptr ; 
@@ -97,9 +126,11 @@ int main()
     push(&A,6) ; 
     push(&A,7) ; 
     push(&A,8) ;
-    push(&A,9) ; 
-    printLinkedList(A) ; 
+    push(&A,9) ;  
+    int count=getCount(A) ; 
+    cout<<count<<endl ; 
     deleteNode(&A,5) ; 
-    printLinkedList(A) ; 
+    count=getCount(A) ; 
+    cout<<count<<endl ; 
     return 0 ; 
 }
