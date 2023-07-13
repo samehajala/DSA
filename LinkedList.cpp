@@ -1,18 +1,24 @@
 #include<iostream> 
 using namespace std ; 
-#include"Node.h"
-NodeLinkedList::NodeLinkedList(int value){data=value ; }
+
+
 struct Node
 {
     int data ; 
     Node* link ; 
 }; 
-void push(NodeLinkedList **head , int newDAta)
+void push(Node**head , int newDAta)
 {
-    NodeLinkedList* newNode=new NodeLinkedList(newDAta) ; 
-     
+   Node* newNode=new Node() ; 
+    newNode->data=newDAta ; 
+    newNode->link=nullptr ; 
+    if (*head==nullptr)
+    {
+        *head=newNode ; 
+        return ; 
+    }
     newNode->link=*head ; 
-    *head=newNode;  
+    *head=newNode ; 
     return ; 
 }
 
