@@ -1,7 +1,6 @@
 #include<iostream> 
+#include<stack>
 using namespace std ; 
-
-
 struct Node
 {
     int data ; 
@@ -109,6 +108,7 @@ int getCount(Node* head)
     }
     return count ;    
 }
+// reversing aa linked list using a stack mmm nice XD 
 void reverseLinkedList(Node** head)
 {
     if((*head)==nullptr )
@@ -119,7 +119,21 @@ void reverseLinkedList(Node** head)
     {
         return ; 
     }
-    
+    stack<Node*> nodes ; 
+    Node* temp=*head ; 
+    while (temp->link!=nullptr)
+    {
+        nodes.push(temp) ; 
+        temp=temp->link ; 
+    }
+    *head=temp ; 
+    while(!nodes.empty())
+    {
+        temp->link=nodes.top() ; 
+        nodes.pop() ; 
+        temp=temp->link ; 
+    }
+    temp->link=nullptr ; 
 }
 int main()
 {
