@@ -20,6 +20,39 @@ void push(Node**head , int newDAta)
     *head=newNode ; 
     return ; 
 }
+void printCircLinkedList(Node* head)
+{
+    Node* temp=head ;
+    if(temp==nullptr)
+    {
+        return ; 
+    } 
+    while (temp->link!=head)
+    {
+        cout<<temp->data<<endl ;
+         temp=temp->link ; 
+    }
+    cout<<temp->data ; 
+    
+}
+void pushC(Node** head_ref, int data)
+{   
+    Node* ptr1 = new Node();
+    ptr1->data = data;
+    ptr1->link = *head_ref;   
+    if (*head_ref != NULL) {     
+        Node* temp = *head_ref;
+        while (temp->link != *head_ref)
+            temp = temp->link;
+        temp->link = ptr1;
+    }
+    else
+ 
+        // For the first node
+        ptr1->link = ptr1;
+ 
+    *head_ref = ptr1;
+}
 
 void Append(Node **head,int newData)
 {
@@ -147,6 +180,12 @@ int main()
     push(&A,7) ; 
     push(&A,8) ;
     push(&A,9) ;  
+    Node* C=nullptr ; 
+    pushC(&C,5) ; 
+    pushC(&C,8) ;
+    pushC(&C,6) ;
+    printCircLinkedList(C) ;   
+    /*
     int count=getCount(A) ; 
     //cout<<count<<endl ; 
     printLinkedList(A) ; 
@@ -155,6 +194,6 @@ int main()
     printLinkedList(A) ; 
     //deleteNode(&A,5) ; 
     //count=getCount(A) ; 
-    //cout<<count<<endl ; 
+    //cout<<count<<endl ;*/ 
     return 0 ; 
 }
