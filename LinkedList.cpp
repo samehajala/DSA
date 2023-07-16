@@ -148,9 +148,13 @@ int main()
     push(&A,8) ;
     push(&A,9) ;  
     int count=getCount(A) ; 
-    cout<<count<<endl ; 
-    deleteNode(&A,5) ; 
-    count=getCount(A) ; 
-    cout<<count<<endl ; 
+    //cout<<count<<endl ; 
+    printLinkedList(A) ; 
+    cout<<endl ; 
+    reverseLinkedList(&A) ; 
+    printLinkedList(A) ; 
+    //deleteNode(&A,5) ; 
+    //count=getCount(A) ; 
+    //cout<<count<<endl ; 
     return 0 ; 
 }
