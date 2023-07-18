@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue> 
 using namespace std ; 
 class Node {
 public:
@@ -81,6 +82,39 @@ void printLevelOrder(Node* root)
     int i;
     for (i = 1; i <= h; i++)
         printCurrentLevel(root, i);
+}
+//Level Order Insertion in a Binary Tree 
+Node* insertNode(Node* root,int data )
+{
+    if(root==nullptr)
+    {
+       root=new Node(data) ; 
+       return root ; 
+    }
+    queue<Node*> nodes ; 
+    nodes.push(root) ; 
+    Node* newNode=new Node(data) ; 
+    while (!nodes.empty())
+    {
+        Node * node=nodes.front() ; 
+        nodes.pop() ; 
+        if (node->left==nullptr)
+        {
+            node->left=newNode ; 
+            return root ; 
+        }
+        else if (node->right==nullptr)
+        {
+            node->right=newNode ; 
+            return root ; 
+        }
+        else
+        {
+            nodes.push(node->left) ; 
+            nodes.push(node->right) ; 
+        } 
+    }
+    
 }
 int main()
 {
