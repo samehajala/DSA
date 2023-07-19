@@ -190,6 +190,28 @@ void ReverseLevelOrder(Node* root)
         cout<<current->data<<" " ; 
     }
 }
+// inorder Traversal using stack 
+void inorderTraversal(Node* root)
+{
+    if(root==nullptr)
+    {
+        return ; 
+    }
+    stack<Node*> s ; 
+    Node* current=root ;
+    while (!s.empty()|| current!=nullptr)
+    {
+         while(current)
+         {
+             s.push(current)  ; 
+             current=current->left ;
+         } 
+    current=s.top() ; 
+    s.pop() ; 
+    cout<<current->data<<" "; 
+    current=current->right ; 
+    }
+}
 int main()
 {
     Node* root = new Node(1);
@@ -201,6 +223,7 @@ int main()
     root->right->right = new Node(7);
     //printCurrentLevel(root,3) ;
     //printSpiralOrder(root) ;  
-    ReverseLevelOrder(root) ; 
+    //ReverseLevelOrder(root) ;
+    inorderTraversal(root) ;  
     return 0 ; 
 }
