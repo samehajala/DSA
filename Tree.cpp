@@ -158,7 +158,38 @@ void printSpiralOrder(Node *root)
         leftToRight = !leftToRight;
     }
 }
+void ReverseLevelOrder(Node* root)
+{
+    if (root==nullptr)
+    {
+        return ; 
+    }
+    stack<Node*> s  ;
+    queue<Node*> q;
+    q.push(root) ;
+    while (!q.empty())
+    {
+        Node* current=q.front() ;
+        q.pop() ; 
+        s.push(current) ; 
+        if(current->right)
+        {
+            q.push(current->right) ; 
+        }
+        if (current->left)
+        {
+            q.push(current->left) ; 
+        }
+        
 
+    }
+    while (!s.empty())
+    {
+        Node* current=s.top() ; 
+        s.pop() ; 
+        cout<<current->data<<" " ; 
+    }
+}
 int main()
 {
     Node* root = new Node(1);
@@ -169,6 +200,7 @@ int main()
     root->right->left = new Node(6);
     root->right->right = new Node(7);
     //printCurrentLevel(root,3) ;
-    printSpiralOrder(root) ;  
+    //printSpiralOrder(root) ;  
+    ReverseLevelOrder(root) ; 
     return 0 ; 
 }
