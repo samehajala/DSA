@@ -120,43 +120,42 @@ Node* insertNode(Node* root,int data )
 //Level order traversal of Binary Tree in Spiral form : 
 void printSpiralOrder(Node *root)
 {
-    if(root==nullptr)
-    {
-        return ; 
-    }
-    queue<Node*> q ; 
-    stack<Node*> s ; 
-    bool leftToRight=true ;
-    q.push(root) ;  
-    for (int i = 0; i <q.size() ; i++)
-    {
-        Node* current=q.front() ; 
-        q.pop() ; 
-        if(leftToRight)
-        {
-           cout<<current->data<<"\t" ; 
+    if (root == NULL)
+        return;
+
+    queue<Node*> q;
+    stack<Node*> s;
+    bool leftToRight = true;
+
+    q.push(root);
+
+    while (!q.empty()) {
+        int levelSize = q.size();
+
+        for (int i = 0; i < levelSize; ++i) {
+            Node* current = q.front();
+            q.pop();
+
+            if (leftToRight)
+                cout << current->data << " ";
+            else
+                s.push(current);
+
+            if (current->left)
+                q.push(current->left);
+            if (current->right)
+                q.push(current->right);
         }
-        else
-        {
-            s.push(current) ; 
-        }
-        if(current->left)
-        {
-            q.push(current->left) ; 
-        }
-        if(current->right)
-        {
-            q.push(current->right) ; 
-        }
-        if (!leftToRight)
-        {
-            while (!s.empty())
-            {
-                Node *temp=s.top() ; 
-                cout<<temp->data<<"\t" ; 
+
+        if (!leftToRight) {
+            while (!s.empty()) {
+                Node* temp = s.top();
+                s.pop();
+                cout << temp->data << " ";
             }
         }
-        leftToRight=!leftToRight ;    
+
+        leftToRight = !leftToRight;
     }
 }
 
@@ -165,10 +164,11 @@ int main()
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
-    root->left->left = new Node(7);
-    root->left->right = new Node(6);
-    root->right->left = new Node(5);
-    root->right->right = new Node(4);
-    printCurrentLevel(root,3) ; 
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    root->right->left = new Node(6);
+    root->right->right = new Node(7);
+    //printCurrentLevel(root,3) ;
+    printSpiralOrder(root) ;  
     return 0 ; 
 }
