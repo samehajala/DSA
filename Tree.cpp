@@ -241,7 +241,40 @@ int depthLevelOrderTraversal(Node* root)
     }
     return hight ; 
 }
-
+// inorderTraversal again 
+void inorderTraversal(Node* root)
+{
+    if(root==nullptr)
+    {
+        return ; 
+    }
+    if (root->left!=nullptr)
+    {
+        inorderTraversal(root->left) ; 
+    }
+    cout<<root->data<<" " ; 
+    if(root->right!=nullptr)
+    {
+        inorderTraversal(root->right) ; 
+    }
+}
+void preOrder(Node* root)
+{
+    if(root==nullptr)
+    {
+        return ; 
+    }
+    cout<<root->data<<" "; 
+    if (root->left)
+    {
+        preOrder(root->left) ; 
+    }
+    if(root->right)
+    {
+        preOrder(root->right) ; 
+    }
+    
+}
 int main()
 {
     Node* root = new Node(1);
