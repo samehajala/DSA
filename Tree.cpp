@@ -212,6 +212,36 @@ void inorderTraversal(Node* root)
     current=current->right ; 
     }
 }
+//Find the Maximum Depth or Height of given Binary Tree  using Level Order Traversal : 
+int depthLevelOrderTraversal(Node* root)
+{
+    if(root==nullptr)
+    {
+        return 0 ; 
+    }
+    queue<Node*> q ; 
+    int hight=0 ; 
+    while (!q.empty())
+    {
+        int size=q.size() ; 
+        for (int i = 0; i < size; i++)
+        {
+            Node* temp=q.front() ; 
+            q.pop() ; 
+            if (temp->left!=nullptr)
+            {
+                q.push(temp->left) ; 
+            }
+            if(temp->right!=nullptr)
+            {
+                q.push(temp->right) ; 
+            }
+        }
+        hight++ ; 
+    }
+    return hight ; 
+}
+
 int main()
 {
     Node* root = new Node(1);
