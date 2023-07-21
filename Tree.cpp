@@ -1,6 +1,7 @@
 #include<iostream>
 #include<queue> 
 #include<stack>
+#include<map>
 using namespace std ; 
 class Node {
 public:
@@ -258,6 +259,7 @@ void inorderTraversal(Node* root)
         inorderTraversal(root->right) ; 
     }
 }
+
 void preOrder(Node* root)
 {
     if(root==nullptr)
@@ -274,6 +276,32 @@ void preOrder(Node* root)
         preOrder(root->right) ; 
     }
     
+}
+Node * constructTree(vector < int > & preorder, int preStart, int preEnd, vector 
+ < int > & inorder, int inStart, int inEnd, map < int, int > & mp) {
+  if (preStart > preEnd || inStart > inEnd) return NULL;
+
+  Node * root = new Node(preorder[preStart]);
+  int elem = mp[root -> data];
+  int nElem = elem - inStart;
+
+  root -> left = constructTree(preorder, preStart + 1, preStart + nElem, inorder,
+  inStart, elem - 1, mp);
+  root -> right = constructTree(preorder, preStart + nElem + 1, preEnd, inorder, 
+  elem + 1, inEnd, mp);
+
+  return root;
+}
+ Node * buildTree(vector < int > & preorder, vector < int > & inorder) {
+  int preStart = 0, preEnd = preorder.size() - 1;
+  int inStart = 0, inEnd = inorder.size() - 1;
+
+  map < int, int > mp;
+  for (int i = inStart; i <= inEnd; i++) {
+    mp[inorder[i]] = i;
+  }
+
+  return constructTree(preorder, preStart, preEnd, inorder, inStart, inEnd, mp);
 }
 int main()
 {
