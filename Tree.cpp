@@ -22,7 +22,7 @@ void printInorder(Node* node){
         return ; 
     }
     printInorder(node->left) ; 
-    cout<<node->data ; 
+    cout<<node->data<<" " ; 
     printInorder(node->right)  ; 
 
 }  
@@ -192,7 +192,7 @@ void ReverseLevelOrder(Node* root)
     }
 }
 // inorder Traversal using stack 
-void inorderTraversal(Node* root)
+void inorderTraversalStack(Node* root)
 {
     if(root==nullptr)
     {
@@ -315,6 +315,10 @@ int main()
     //printCurrentLevel(root,3) ;
     //printSpiralOrder(root) ;  
     //ReverseLevelOrder(root) ;
-    inorderTraversal(root) ;  
+    vector<int> preorder{10,20,40,50,30,60};
+  vector<int> inorder{40,20,50,10,60,30};
+  Node * root1 = buildTree(preorder, inorder);
+  printInorder(root1) ;
+   // inorderTraversal(root) ;  
     return 0 ; 
 }
