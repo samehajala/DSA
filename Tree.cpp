@@ -311,15 +311,66 @@ Node* insert(Node* node,int key)
         Node* newNode=new Node(key) ; 
         return newNode ; 
     }
-    if(node->data>key)
-    {
-        insert(node->left,key) ; 
-    }
-    else if (node->data <key)
-    {
-        insert(node->right,key) ; 
-    }
+    if (key < node->data)
+        node->left = insert(node->left, key);
+    else
+        node->right = insert(node->right, key);
     return node ; 
+}
+Node* findMInBST(Node* root)
+{
+    if(root==nullptr)
+    {
+        return nullptr ; 
+    }
+    Node* current=root ; 
+    while (current->left!=nullptr)
+    {
+        current=current->left ; 
+    }
+    return current; 
+    
+}
+Node* deleteNode(Node* root, int k)
+{
+    // Base case
+    if (root == NULL)
+        return root;
+ 
+    // Recursive calls for ancestors of
+    // node to be deleted
+    if (root->data > k) {
+        root->left = deleteNode(root->left, k);
+        return root;
+    }
+    else if (root->data < k) {
+        root->right = deleteNode(root->right, k);
+        return root;
+    }
+ 
+    // We reach here when root is the node
+    // to be deleted.
+ 
+    // If one of the children is empty
+    if (root->left == NULL) {
+        Node* temp = root->right;
+        delete root;
+        return temp;
+    }
+    else if (root->right == NULL) {
+        Node* temp = root->left;
+        delete root;
+        return temp;
+    }
+    // If both children exist 
+    // very important to manipulate this kind of things !!!! 
+    else {
+        
+        Node* temp=findMInBST(root->right) ; 
+        root->data=temp->data ; 
+        root->right=deleteNode(root->right,temp->data) ; 
+        return root ; 
+    }
 } 
 Node* search(Node* node,int value)
 {
@@ -338,20 +389,34 @@ Node* search(Node* node,int value)
 }
 int main()
 {
+    /*
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
     root->left->left = new Node(4);
     root->left->right = new Node(5);
     root->right->left = new Node(6);
-    root->right->right = new Node(7);
+    root->right->right = new Node(7); 
     //printCurrentLevel(root,3) ;
     //printSpiralOrder(root) ;  
     //ReverseLevelOrder(root) ;
     vector<int> preorder{10,20,40,50,30,60};
-  vector<int> inorder{40,20,50,10,60,30};
-  Node * root1 = buildTree(preorder, inorder);
-  printInorder(root1) ;
-   // inorderTraversal(root) ;  
+    vector<int> inorder{40,20,50,10,60,30};
+    Node * root1 = buildTree(preorder, inorder);
+    printInorder(root1) ;
+    root1=deleteNode(root1,50) ; 
+    cout<<endl ; 
+    printInorder(root1) ; 
+    
+   */
+  Node* root=nullptr;
+  root = insert(root,5);
+   root = insert(root,10);
+	root = insert(root,3); root = insert(root,4); 
+	root = insert(root,1); root = insert(root,11);
+    inorderTraversal(root) ;   
+    root=deleteNode(root,5) ; 
+    cout<<endl ; 
+    inorderTraversal(root) ; 
     return 0 ; 
 }
