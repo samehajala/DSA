@@ -387,6 +387,19 @@ Node* search(Node* node,int value)
         search(node->right,value) ; 
     }
 }
+Node* findMaxBST(Node* root)
+{
+    if(root==nullptr)
+    {
+        return nullptr ;
+    }
+    Node* current=root ; 
+    while (current->right!=nullptr)
+    {
+        current=current->right ; 
+    }
+    return current ; 
+}
 int main()
 {
     /*
@@ -415,8 +428,10 @@ int main()
 	root = insert(root,3); root = insert(root,4); 
 	root = insert(root,1); root = insert(root,11);
     inorderTraversal(root) ;   
-    root=deleteNode(root,5) ; 
+    //root=deleteNode(root,5) ; 
     cout<<endl ; 
-    inorderTraversal(root) ; 
+    //inorderTraversal(root) ;
+    Node* max=findMaxBST(root) ; 
+    cout<<max->data  ; 
     return 0 ; 
 }
