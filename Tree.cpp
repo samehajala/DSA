@@ -303,6 +303,39 @@ Node * constructTree(vector < int > & preorder, int preStart, int preEnd, vector
 
   return constructTree(preorder, preStart, preEnd, inorder, inStart, inEnd, mp);
 }
+// We Pass now to BST
+Node* insert(Node* node,int key)
+{
+    if(node==nullptr)
+    {
+        Node* newNode=new Node(key) ; 
+        return newNode ; 
+    }
+    if(node->data>key)
+    {
+        insert(node->left,key) ; 
+    }
+    else if (node->data <key)
+    {
+        insert(node->right,key) ; 
+    }
+    return node ; 
+} 
+Node* search(Node* node,int value)
+{
+    if(node==nullptr|| node->data==value)
+    {
+        return node ; 
+    }
+    if (value<node->data)
+    {
+        search(node->left,value) ; 
+    }
+    else
+    {
+        search(node->right,value) ; 
+    }
+}
 int main()
 {
     Node* root = new Node(1);
