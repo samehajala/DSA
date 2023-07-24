@@ -400,6 +400,44 @@ Node* findMaxBST(Node* root)
     }
     return current ; 
 }
+// Inorder predecessor and successor for a given key in BST 
+/* Returns true if a binary tree is a binary search tree */
+bool isBST(Node* root)
+{
+    if(root==nullptr)
+    {
+        return true  ; 
+    }
+    if (root->right!=nullptr && findMInBST(root->right)->data<root->data)
+    {
+        return  false ;
+    }
+    if(root->left!=nullptr && findMaxBST(root->left)->data>root->data)
+    {
+        return false ; 
+    }
+    if(!isBST(root->left) && !isBST(root->right))
+    {
+        return false ; 
+    }
+    return true ; 
+}
+Node* LowestCommenAncestor(Node* root,int n1,int n2)
+{
+    if(root==nullptr)
+    {
+        return nullptr ; 
+    }
+    if(root->data>n1 && root->data>n2)
+    {
+        LowestCommenAncestor(root->left,n1,n2) ; 
+    }
+    if(root->data<n1 && root->data<n2)
+    {
+        LowestCommenAncestor(root->right,n1,n2) ; 
+    }
+    return root ; 
+}
 int main()
 {
     /*
@@ -431,7 +469,11 @@ int main()
     //root=deleteNode(root,5) ; 
     cout<<endl ; 
     //inorderTraversal(root) ;
-    Node* max=findMaxBST(root) ; 
-    cout<<max->data  ; 
+    //Node* max=findMaxBST(root) ; 
+    //cout<<max->data  ; 
+    /*if(isBST(root))
+    {
+        cout<<"It's a BST"<<endl ; 
+    }*/
     return 0 ; 
 }
