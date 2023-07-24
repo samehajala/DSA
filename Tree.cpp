@@ -1,6 +1,8 @@
 #include<iostream>
+#include<vector>
 #include<queue> 
 #include<stack>
+#include<algorithm>
 #include<map>
 using namespace std ; 
 class Node {
@@ -437,6 +439,28 @@ Node* LowestCommenAncestor(Node* root,int n1,int n2)
         LowestCommenAncestor(root->right,n1,n2) ; 
     }
     return root ; 
+} 
+void preorderVector(Node* root,vector<int>&v){
+    if(root==NULL)return;
+    v.push_back(root->data);
+    preorderVector(root->left,v);
+    preorderVector(root->right,v);
+}
+void printKthSmallest(Node* root,int k)
+{
+    vector<int> v ; 
+    preorderVector(root,v) ; 
+    sort(v.begin(),v.end()) ;
+    if(k<=v.size())
+    {
+        cout<<v[k-1]<<endl  ;
+    } 
+    else
+    {
+        cout<<"there is no kth element in this BST"<<endl ; 
+    }
+    
+    
 }
 int main()
 {
@@ -475,5 +499,7 @@ int main()
     {
         cout<<"It's a BST"<<endl ; 
     }*/
+    int k=3 ; 
+   printKthSmallest( root, k) ;
     return 0 ; 
 }
