@@ -46,6 +46,10 @@ void InsertLevelOrder(Node* root,int value)
 
 int main()
 {
+    for (int  i = 0; i < 22; i++)
+    {
+        cout<<"slm"<<endl ; 
+    }
     
     return 0 ; 
 }
